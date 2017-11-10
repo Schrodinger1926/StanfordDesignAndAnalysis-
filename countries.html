@@ -1,0 +1,608 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; Linux 2.2.19-6.2.1alsa i686) [Netscape]">
+   <meta name="Keywords" content="traveling salesman problem, travelling salesman problem, TSP">
+   <title>National Traveling Salesman Problems</title>
+
+
+<script language="JavaScript">
+<!--
+
+function getimage(arg) {
+    if (document.images) {
+        rimg = new Image();
+        rimg.src = arg;
+        return rimg;
+    }
+}
+
+function preloader() {
+    if (document.images) {
+        homeon = getimage("../resources/homeblack.gif");
+        historyon = getimage("../resources/historyblack.gif");
+        galleryon = getimage("../resources/galleryblack.gif");
+        applon = getimage("../resources/applblack.gif");
+        methodson = getimage("../resources/methodsblack.gif");
+    }
+}
+
+if (document.images) {
+    homeoff = getimage("../resources/homewhite.gif");
+    historyoff = getimage("../resources/historywhite.gif");
+    galleryoff = getimage("../resources/gallerywhite.gif");
+    apploff = getimage("../resources/applwhite.gif");
+    methodsoff = getimage("../resources/methodswhite.gif");
+}
+
+function changeImages() {    /* from webdesign.about.com */
+    if (document.images) {
+        for (var i=0; i<changeImages.arguments.length; i+=2) {
+            document[changeImages.arguments[i]].src = eval(changeImages.arguments[i+1] + ".src");
+        }
+    }
+}
+
+
+// -->
+</script>
+
+
+</head>
+
+<body text="#000000" bgcolor="#ffffff"
+background="../resources/bh_bg.gif" link="#993333" vlink="#333399" alink="#cc3333" leftmargin=0 topmargin=0 marginheight=0 marginwidth=0 onload="preloader()">
+
+<table COLS=4 WIDTH=725 BGCOLOR="#d60c0c" CELLSPACING="0" CELLPADDING="0" BORDER=0>
+<tr>
+<td width="15" border=0 align=left><font color="#d60c0c">....</font></td>
+<td ALIGN=LEFT VALIGN=center height=32 border=0><img SRC="../resources/stsp.gif" ALT="Solving TSPs" BORDER=0 height=23 width=148></td>
+<td ALIGN=right VALIGN=center height=32 border=0>
+<table cols=5 nosave cellpadding=10>
+<td ALIGN=center VALIGN=center border=0 width=46>
+<a href="../index.html" onmouseover="changeImages('homeg', 'homeon')" onmouseout="changeImages('homeg', 'homeoff')"><img name="homeg" src="../resources/homewhite.gif" alt="" border=0 height=13 width=46></a></td>
+<td ALIGN=center VALIGN=center width=58>
+<a href="../histmain.html" onmouseover="changeImages('historyg', 'historyon')" onmouseout="changeImages('historyg', 'historyoff')"><img name="historyg" src="../resources/historywhite.gif" alt="" border=0 height=16 width=58></a></td>
+<td ALIGN=center VALIGN=center width=55>
+<a href="../gallery/index.html" onmouseover="changeImages('galleryg', 'galleryon')" onmouseout="changeImages ('galleryg', 'galleryoff')"><img name="galleryg" src="../resources/gallerywhite.gif" alt="" border=0 height=16 width=55></a></td>
+<td ALIGN=center VALIGN=center width=101>
+<a href="../apps/index.html" onmouseover="changeImages('applg', 'applon')" onmouseout="changeImages('applg', 'apploff')"><img name="applg" src="../resources/applwhite.gif" alt="" border=0 height=16 width=101></a></td>
+<td ALIGN=center VALIGN=center width=73>
+<a href="../methods.html" onmouseover="changeImages('methodsg', 'methodson')" onmouseout="changeImages('methodsg', 'methodsoff')"><img name="methodsg" src="../resources/methodswhite.gif" alt="" border=0 height=13 width=73></a></td></table></td>
+<td width="15" border=0 align=left><font color="#d60c0c">....</font></td>
+</tr></table>
+
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+
+<!-- Using the Yale Text Style:  info.med.yale.edu/caim/manual/ -->
+<!-- Blue background: 6699cc -->
+
+<TD WIDTH="15">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="15" HEIGHT="1"></TD>
+
+<TD WIDTH="125" VALIGN="TOP">
+<FACE="TIMES NEW ROMAN, TIMES ROMAN, TIMES, SERIF">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="125" HEIGHT="1"><BR>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="70"><BR>
+<a href="index.html">World TSP</a><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="2"><BR>
+<font color="#999999">National TSPs</font><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="2"><BR>
+<a href="../vlsi/index.html">VLSI TSPs</a><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="24"><BR>
+<a href="http://www.cia.gov/cia/publications/factbook/index.html">CIA Factbook</a><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="3"><BR>
+<a href="http://164.214.2.59/gns/html/">GEOnet Server</a><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="3"><BR>
+<a href="http://geonames.usgs.gov/">GNIS Data</a><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="20"><BR>
+<!-- http://nssdc.gsfc.nasa.gov/photo_gallery/photogallery-earth.html -->
+<IMG SRC="earth2.gif" ALT="Earth" WIDTH="80" HEIGHT="80"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="24"><BR>
+
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="24"><BR>
+
+<B>TSP Links</B><br>
+<TABLE CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1" VSPACE="3"></TD>
+<TD WIDTH="120"><FACE="TIMES NEW ROMAN, TIMES ROMAN, TIMES, SERIF">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="1" VSPACE="2"><BR>
+<a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/">TSPLIB</a><BR>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="1" HEIGHT="1" VSPACE="2"><BR>
+<a href="../index.html">Home page</a><br>
+</FONT></TD></TR></TABLE>
+</FONT>
+
+
+</TD>
+
+<TD WIDTH="25">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="25" HEIGHT="1"></TD>
+
+<TD WIDTH="560" VALIGN="TOP">
+<FONT FACE="TIMES NEW ROMAN, TIMES ROMAN, TIMES, SERIF">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="560" HEIGHT="1" VSPACE="10"><BR>
+
+<IMG SRC="nattop.gif" ALT="" WIDTH="433" HEIGHT="23"><br>
+
+<p>
+We list below 25 TSP instances taken from the <a href=".">World TSP</a>.
+For these instances, the cost of travel between cities is specified by the Eulidean distance rounded to the nearest whole number (the <a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/">TSPLIB</a> EUC_2D-norm).
+The TSPs range in size from 29 cities in Western Sahara to 71,009 cities in China; they provide additional tests to complement the TSPLIB collection.
+The TSPs were derived from data contained in the <a href="http://164.214.2.59/gns/html/">National Imagery and Mapping Agency</a> database of geographic feature names.
+In a number of instances the data sets contained duplicates of city locations (with different names); the TSP instances with duplications are noted in the list below.<br><br>
+
+We will be most happy to report any improved tours or improved lower bounds that you may find.&nbsp
+A summary of the current solution status for the instances can be found <a href="summary.html">here</a>.<br>
+
+
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="560" HEIGHT="1" VSPACE="10"><BR>
+
+
+
+<a NAME="AR"></a>
+<a NAME="BM"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="arflag.jpg" ALT="Argentina Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Argentina - 9,152 Cities (Includes duplications; 6,723 distinct cities)<br>
+<a href="arpoints.html">Point Set</a><br>
+<a href="artour.html">Tour</a> (within 0.012% of optimal)<br>
+<a href="armap.html">CIA World Factbook Map</a><br>
+<a href="ar9152.tsp">Data</a> (TSPLIB Format, ar9125)<br>
+<a href="arlog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="bmflag.jpg" ALT="Burma Flag (CIA Factbook)" WIDTH="69" HEIGHT="36"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Burma - 33,708 Cities<br>
+<a href="bmpoints.html">Point Set</a><br>
+<a href="bmtour.html">Tour</a> (within 0.031% of optimal)<br>
+<a href="bmmap.html">CIA World Factbook Map</a><br>
+<a href="bm33708.tsp">Data</a> (TSPLIB Format, bm33708)<br>
+<a href="bmlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="CH"></a>
+<a NAME="DJ"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="chflag.jpg" ALT="China Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+China - 71,009 Cities<br>
+<a href="chpoints.html">Point Set</a><br>
+<a href="chtour.html">Tour</a> (within 0.024% of optimal)<br>
+<a href="chmap.html">CIA World Factbook Map</a><br>
+<a href="ch71009.tsp">Data</a> (TSPLIB Format, ch71009)<br>
+<a href="chlog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="djflag.jpg" ALT="Djibouti Flag (CIA Factbook)" WIDTH="53" HEIGHT="36"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Djibouti - 38 Cities<br>
+<a href="djpoints.html">Point Set</a><br>
+<a href="djtour.html">Optimal Tour</a><br>
+<a href="djmap.html">CIA World Factbook Map</a><br>
+<a href="dj38.tsp">Data</a> (TSPLIB Format, dj38)<br>
+<a href="djlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="EG"></a>
+<a NAME="FI"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="egflag.jpg" ALT="Egypt Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Egypt - 7,146 Cities<br>
+<a href="egpoints.html">Point Set</a><br>
+<a href="egtour.html">Tour</a> (within 0.021% of optimal)<br>
+<a href="egmap.html">CIA World Factbook Map</a><br>
+<a href="eg7146.tsp">Data</a> (TSPLIB Format, eg7146)<br>
+<a href="eglog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="fiflag.jpg" ALT="Finland Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Finland - 10,639 Cities<br>
+<a href="fipoints.html">Point Set</a><br>
+<a href="fitour.html">Optimal Tour</a><br>
+<a href="fimap.html">CIA World Factbook Map</a><br>
+<a href="fi10639.tsp">Data</a> (TSPLIB Format, fi10639)<br>
+<a href="filog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="GR"></a>
+<a NAME="HO"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="grflag.jpg" ALT="Greece Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Greece - 9,882 Cities<br>
+<a href="grpoints.html">Point Set</a><br>
+<a href="grtour.html">Optimal Tour</a><br>
+<a href="grmap.html">CIA World Factbook Map</a><br>
+<a href="gr9882.tsp">Data</a> (TSPLIB Format, gr9882)<br>
+<a href="grlog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="hoflag.jpg" ALT="Honduras Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Honduras - 14,473 Cities (Includes duplications; 7,103 distinct cities)<br>
+<a href="hopoints.html">Point Set</a><br>
+<a href="hotour.html">Tour</a> (within 0.093% of optimal)<br>
+<a href="homap.html">CIA World Factbook Map</a><br>
+<a href="ho14473.tsp">Data</a> (TSPLIB Format, ho14473)<br>
+<a href="holog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="EI"></a>
+<a NAME="JA"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="eiflag.jpg" ALT="Ireland Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Ireland - 8,246 Cities<br>
+<a href="eipoints.html">Point Set</a><br>
+<a href="eitour.html">Tour</a> (within 0.021% of optimal)<br>
+<a href="eimap.html">CIA World Factbook Map</a><br>
+<a href="ei8246.tsp">Data</a> (TSPLIB Format, ei8246)<br>
+<a href="eilog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="jaflag.jpg" ALT="Japan Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Japan - 9,847 Cities<br>
+<a href="japoints.html">Point Set</a><br>
+<a href="jatour.html">Optimal Tour</a><br>
+<a href="jamap.html">CIA World Factbook Map</a><br>
+<a href="ja9847.tsp">Data</a> (TSPLIB Format, ja9847)<br>
+<a href="jalog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="KZ"></a>
+<a NAME="LU"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="kzflag.jpg" ALT="Kazakhstan Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Kazakhstan - 9,976 Cities<br>
+<a href="kzpoints.html">Point Set</a><br>
+<a href="kztour.html">Tour</a> (within 0.028% of optimal)<br>
+<a href="kzmap.html">CIA World Factbook Map</a><br>
+<a href="kz9976.tsp">Data</a> (TSPLIB Format, kz9976)<br>
+<a href="kzlog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="luflag.jpg" ALT="Luxembourg Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Luxembourg - 980 Cities (Includes duplications; 634 distinct cities)<br>
+<a href="lupoints.html">Point Set</a><br>
+<a href="lutour.html">Optimal Tour</a><br>
+<a href="lumap.html">CIA World Factbook Map</a><br>
+<a href="lu980.tsp">Data</a> (TSPLIB Format, lu980)<br>
+<a href="lulog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="MO"></a>
+<a NAME="NU"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="moflag.jpg" ALT="Morocco Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Morocco - 14,185 Cities<br>
+<a href="mopoints.html">Point Set</a><br>
+<a href="motour.html">Tour</a> (within 0.031% of optimal)<br>
+<a href="momap.html">CIA World Factbook Map</a><br>
+<a href="mo14185.tsp">Data</a> (TSPLIB Format, mo14185)<br>
+<a href="molog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="nuflag.jpg" ALT="Nicaragua Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Nicaragua - 3,496 Cities (Includes duplications; 2,373 distinct cities)<br>
+<a href="nupoints.html">Point Set</a><br>
+<a href="nutour.html">Optimal Tour</a><br>
+<a href="numap.html">CIA World Factbook Map</a><br>
+<a href="nu3496.tsp">Data</a> (TSPLIB Format, nu3496)<br>
+<a href="nulog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="MU"></a>
+<a NAME="PM"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="muflag.jpg" ALT="Oman Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Oman - 1,979 Cities<br>
+<a href="mupoints.html">Point Set</a><br>
+<a href="mutour.html">Optimal Tour</a><br>
+<a href="mumap.html">CIA World Factbook Map</a><br>
+<a href="mu1979.tsp">Data</a> (TSPLIB Format, mu1979)<br>
+<a href="mulog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="pmflag.jpg" ALT="Nicaragua Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Panama - 8,079 Cities (Includes duplications; 4,951 distinct cities)<br>
+<a href="pmpoints.html">Point Set</a><br>
+<a href="pmtour.html">Sample Tour</a><br>
+<a href="pmmap.html">CIA World Factbook Map</a><br>
+<a href="pm8079.tsp">Data</a> (TSPLIB Format, pm8079)<br>
+<a href="pmlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="QA"></a>
+<a NAME="RW"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="qaflag.jpg" ALT="Qatar Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Qatar - 194 Cities<br>
+<a href="qapoints.html">Point Set</a><br>
+<a href="qatour.html">Optimal Tour</a><br>
+<a href="qamap.html">CIA World Factbook Map</a><br>
+<a href="qa194.tsp">Data</a> (TSPLIB Format, qa194)<br>
+<a href="qalog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="rwflag.jpg" ALT="Rwanda Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Rwanda - 1,621 Cities (Includes duplications; 866 distinct cities)<br>
+<a href="rwpoints.html">Point Set</a><br>
+<a href="rwtour.html">Optimal Tour</a><br>
+<a href="rwmap.html">CIA World Factbook Map</a><br>
+<a href="rw1621.tsp">Data</a> (TSPLIB Format, rw1621)<br>
+<a href="rwlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="SW"></a>
+<a NAME="TZ"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="swflag.jpg" ALT="Sweden Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Sweden - 24,978 Cities<br>
+<a href="swpoints.html">Point Set</a><br>
+<a href="swtour.html">Optimal Tour</a><br>
+<a href="swmap.html">CIA World Factbook Map</a><br>
+<a href="sw24978.tsp">Data</a> (TSPLIB Format, sw24978)<br>
+<a href="swlog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="tzflag.jpg" ALT="Tanzania Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Tanzania - 6,117 Cities<br>
+<a href="tzpoints.html">Point Set</a><br>
+<a href="tztour.html">Tour</a> (within 0.027% of optimal)<br>
+<a href="tzmap.html">CIA World Factbook Map</a><br>
+<a href="tz6117.tsp">Data</a> (TSPLIB Format, tz6117)<br>
+<a href="tzlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="UY"></a>
+<a NAME="VM"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="uyflag.jpg" ALT="Uruguay Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Uruguay - 734 Cities<br>
+<a href="uypoints.html">Point Set</a><br>
+<a href="uytour.html">Optimal Tour</a><br>
+<a href="uymap.html">CIA World Factbook Map</a><br>
+<a href="uy734.tsp">Data</a> (TSPLIB Format, uy734)<br>
+<a href="uylog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="vmflag.jpg" ALT="Vietnam Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Vietnam - 22,775 Cities<br>
+<a href="vmpoints.html">Point Set</a><br>
+<a href="vmtour.html">Optimal Tour</a><br>
+<a href="vmmap.html">CIA World Factbook Map</a><br>
+<a href="vm22775.tsp">Data</a> (TSPLIB Format, vm22775)<br>
+<a href="vmlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+<a NAME="WI"></a>
+<a NAME="YM"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="wiflag.gif" ALT="Western Sahara Flag (African Studies Page)" WIDTH="55" HEIGHT="38"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Western Sahara - 29 Cities<br>
+<a href="wipoints.html">Point Set</a><br>
+<a href="witour.html">Optimal Tour</a><br>
+<a href="wimap.html">CIA World Factbook Map</a><br>
+<a href="wi29.tsp">Data</a> (TSPLIB Format, wi29)<br>
+<a href="wilog.html">Log of Computation</a>
+</TD>
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="ymflag.jpg" ALT="Yeman Flag (CIA Factbook)" WIDTH="53" HEIGHT="35"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Yemen - 7,663 Cities<br>
+<a href="ympoints.html">Point Set</a><br>
+<a href="ymtour.html">Tour</a> (within 0.030% of optimal)<br>
+<a href="ymmap.html">CIA World Factbook Map</a><br>
+<a href="ym7663.tsp">Data</a> (TSPLIB Format, ym7663)<br>
+<a href="ymlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+<p>
+<br>
+
+
+<a NAME="ZI"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="ziflag.jpg" ALT="Zimbabwe Flag (CIA World Factbook)" WIDTH="77" HEIGHT="37"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Zimbabwe - 929 Cities<br>
+<a href="zipoints.html">Point Set</a><br>
+<a href="zitour.html">Optimal Tour</a><br>
+<a href="zimap.html">CIA World Factbook Map</a><br>
+<a href="zi929.tsp">Data</a> (TSPLIB Format, zi929)<br>
+<a href="zilog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="560" HEIGHT="20"><BR>
+
+<p>
+<img src="../resources/blackpixel.gif" ALT="" width=100% height = 1>
+<p>
+
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="560" HEIGHT="20"><BR>
+
+<a NAME="CA"></a>
+<a NAME="IT"></a>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="caflag.jpg" ALT="Canada Flag (CIA World Factbook)" WIDTH="77" HEIGHT="37"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Canada - 4,663 Cities<br>
+<a href="capoints.html">Point Set</a><br>
+<a href="catour.html">Optimal Tour</a><br>
+<a href="camap.html">CIA World Factbook Map</a><br>
+<a href="ca4663.tsp">Data</a> (TSPLIB Format, ca4663)<br>
+<a href="calog.html">Log of Computation</a>
+</TD>
+
+<TD WIDTH="5"><IMG SRC="../resources/pixel.gif" ALT="" WIDTH="5" HEIGHT="1"></TD>
+
+<TD WIDTH="220">
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="1"><BR>
+<IMG SRC="itflag.jpg" ALT="Italy Flag (CIA World Factbook)" WIDTH="77" HEIGHT="37"><br>
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="220" HEIGHT="2"><BR>
+Italy - 16,862 Cities<br>
+<a href="itpoints.html">Point Set</a><br>
+<a href="ittour.html">Optimal Tour</a><br>
+<a href="itmap.html">CIA World Factbook Map</a><br>
+<a href="it16862.tsp">Data</a> (TSPLIB Format, it16862)<br>
+<a href="itlog.html">Log of Computation</a>
+</TD>
+</TR></TABLE>
+
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="560" HEIGHT="20"><BR>
+
+<p>
+<img src="../resources/blackpixel.gif" ALT="" width=100% height = 1>
+<p>
+
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="560" HEIGHT="20"><BR>
+
+Additonal Links<br>
+
+<ul>
+<li>
+<a href="http://cadredidactice.ub.ro/ceraselacrisan/cercetare/">Romanian and Swiss TSP instances</a>, created by <a href="http://cadredidactice.ub.ro/ceraselacrisan/">Cerasela Crisan</a> and Camelia Pintea.
+</li>
+</ul>
+
+<IMG SRC="../resources/pixel.gif" ALT="" WIDTH="560" HEIGHT="20"><BR>
+
+<p>
+<img src="../resources/blackpixel.gif" ALT="" width=100% height = 1>
+<p>
+
+<a href="./index.html">Back to TSP home</a>.
+<p>Last Updated:&nbsp; March 10, 2017
+<br>Contact:&nbsp; bico@uwaterloo.ca&nbsp;
+
+
+</font></td></tr></table>
+
+<p>
+
+</body>
+</html>
